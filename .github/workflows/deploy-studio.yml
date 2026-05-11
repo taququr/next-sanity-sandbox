@@ -15,6 +15,9 @@ jobs:
         run: |
           npm install
           npm run build --workspace=studio
+        env:
+          SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_STUDIO_PROJECT_ID }}
+          SANITY_STUDIO_DATASET: ${{ secrets.SANITY_STUDIO_DATASET }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
