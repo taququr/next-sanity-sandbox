@@ -1,0 +1,23 @@
+name: Deploy Sanity Studio to GH Pages
+
+on:
+  push:
+    branches: [main] # Or your default branch name
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run build --workspace=studio
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: studio/dist # The folder the build script created
+          branch: gh-pages # The branch where the build will live
